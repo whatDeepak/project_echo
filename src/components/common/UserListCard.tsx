@@ -14,7 +14,7 @@ export default function UserListCard({ user }: { user: User }) {
             <span className="ml-2 font-light text-xs">@{user.username}</span>
           </div>
           <Link href={`/user/${user.id}`}>
-            <Button size="sm">view</Button>
+            <Button size="sm">View</Button>
           </Link>
         </div>
       </div>

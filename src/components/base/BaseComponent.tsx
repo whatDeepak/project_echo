@@ -11,10 +11,10 @@ export default async function BaseComponent({
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-screen md:container p-5">
+    <div className="h-screen p-5">
       <div className="h-screen flex">
         <LeftSidebar />
-        <ScrollArea className="h-screen w-full lg:w-2/4 md:w-3/4 lg:px-8 lg:py-4 xl:px-12  md:p-6">
+        <ScrollArea className="h-screen w-full lg:w-7/10 md:w-3/4 lg:px-6 lg:py-4 xl:px-12 md:p-6">
           <MobileNavBar />
           {children}
         </ScrollArea>
