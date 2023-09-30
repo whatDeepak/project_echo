@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PostCard from "@/components/common/PostCard";
 import CommentCard from "@/components/common/CommentCard";
 import { Button } from "@/components/ui/button";
+import UserProfile from "@/components/common/UserProfile";
 
 export default async function ShowUser({ params }: { params: { id: number } }) {
   const user: ShowUserType | undefined = await fetchUser(params.id);
@@ -13,21 +14,11 @@ export default async function ShowUser({ params }: { params: { id: number } }) {
     <div>
       <DyanmicNavBar title="Show User" />
       <div>
-        {user && (
-          <div className="flex items-center space-x-4 mt-5">
-            <div className="self-start">
-              <UserProfileAvatar name={user.name} image="" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold ">{user.name}</h1>
-              <p className="text-md text-orange-300 ">@{user.username}</p>
-              <h1 className="text-xl">{user.email}</h1>
-              <Button className="mt-10"size="lg">Follow</Button>
-            </div>
-          </div>  
-         
+      {user && (
+          <UserProfile
+            user={user}
+          />
         )}
-
         <div className="mt-10 ">
           <Tabs defaultValue="post" className="w-full">
             <TabsList className="w-full">

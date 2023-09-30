@@ -83,3 +83,16 @@ type PostLikeType = {
   post_id: number;
   user_id: number;
 };
+
+// types.ts
+
+type FollowType = {
+  user_id: string; // The user you want to follow/unfollow
+  status: string; // "follow" or "unfollow"
+};
+
+type FollowerType = {
+  id: number;
+  followerId: number; // The user who is following
+  followingId: number; // The user being followed
+};
