@@ -27,12 +27,12 @@ export default function MobileNavBar() {
               <SheetTitle>
                 <div className="flex justify-start items-center">
                   <Image
-                    src="/images/logo.svg"
+                    src="/images/echologo.svg"
                     width={50}
                     height={50}
                     alt="logo"
                   />
-                  <h1 className="font-bold text-xl ml-2">Threads</h1>
+                  <h1 className="font-bold text-xl ml-2">Echo</h1>
                 </div>
               </SheetTitle>
               <SheetDescription>
@@ -44,7 +44,7 @@ export default function MobileNavBar() {
       </div>
 
       <div className="">
-        <Image src="/images/logo.svg" width={30} height={30} alt="Logo" />
+        <Image src="/images/echologo.svg" width={30} height={30} alt="Logo" />
       </div>
       <Link href="/profile">
         <User2 height={25} width={25} />

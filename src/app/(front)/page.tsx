@@ -11,7 +11,7 @@ export default async function Home() {
     <div>
       <div className="flex justify-center items-center">
         <Image
-          src="/images/logo.svg"
+          src="/images/echologo.svg"
           width={50}
           height={50}
           alt="Logo"
