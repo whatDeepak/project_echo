@@ -11,6 +11,8 @@ import {
   CustomSession,
   authOptions,
 } from "@/app/api/auth/[...nextauth]/options";
+import Followers from "@/components/common/Followers";
+import { User } from "lucide-react";
 
 export default async function Profile() {
   const session: CustomSession | null = await getServerSession(authOptions);
@@ -32,6 +34,8 @@ export default async function Profile() {
           <h1 className="text-xl">{session?.user?.email}</h1>
         </div>
       </div>
+
+      {session?.user && <Followers user={session.user} />}
 
       <div className="mt-10 ">
         <Tabs defaultValue="post" className="w-full">
