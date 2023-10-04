@@ -6,8 +6,8 @@ import CustomProvider from "../providers";
 import BaseComponent from "@/components/base/BaseComponent";
 
 export const metadata: Metadata = {
-  title: "Threads App",
-  description: "The Threads app to share your thoughts and much more.",
+  title: "Echo App",
+  description: "The Echo app to share your thoughts and much more.",
 };
 
 export default function RootLayout({

@@ -20,7 +20,6 @@ model User {
   created_at   DateTime       @default(now())
   followers Follow[] @relation("Following")
   following Follow[] @relation("Follower")
-  FollowCount FollowCount?
   Post         Post[]
   Comment      Comment[]
   Notification Notification[]
@@ -77,10 +76,3 @@ model Follow {
   updatedAt    DateTime @updatedAt
 }
 
-model FollowCount {
-  id             Int      @id @default(autoincrement())
-  user           User     @relation(fields: [userId], references: [id])
-  userId         Int      @unique // Add @unique attribute here
-  followerCount  Int      @default(0)
-  followingCount Int      @default(0)
-}
