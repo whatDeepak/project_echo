@@ -9,6 +9,7 @@ import { Heart } from "lucide-react";
 import ShareModal from "./ShareModal";
 import ImageViewer from "./ImageViewer";
 import axios from "axios";
+import Likes from "./Likes";
 
 export default function PostCard({
   post,
@@ -20,9 +21,10 @@ export default function PostCard({
   isAuthPost?: boolean;
 }) {
   const [isLiked, setIsLiked] = useState<string>("0"); // Initialize with "0" (not liked)
-  
+
   const likeDislike = (status: string) => {
-    if (status !== isLiked) { // Only make the API call if the status has changed
+    // Only make the API call if the status has changed
+    if (status !== isLiked) {
       axios
         .post("/api/like", {
           status,
@@ -38,16 +40,21 @@ export default function PostCard({
             console.error(`Error ${status === "1" ? "liking" : "disliking"} post: Server returned status ${res.status}`);
             // You can also log the response data for further debugging
             console.error(res.data);
+            // If the request fails, revert the state to the previous value
+            setIsLiked(isLiked === "1" ? "0" : "1");
           }
         })
         .catch((err) => {
           console.error(`Error ${status === "1" ? "liking" : "disliking"} post:`, err);
+          // If the request fails, revert the state to the previous value
+          setIsLiked(isLiked === "1" ? "0" : "1");
         });
     }
   };
+  
 
   useEffect(() => {
-    const fetchLikeStatus = async () => {
+    let fetchLikeStatus = async () => {
       try {
         // Make an API request to check if the user has liked the post
         const response = await axios.get(`/api/like/${post.id}`);
@@ -101,9 +108,10 @@ export default function PostCard({
           <AddComment post={post} />
           <ShareModal url={`${Env.APP_URL}/post/${post.id}`} />
         </div>
-        <div className="mt-2">
+        <div className="mt-2 flex item-center">
           <span className="font-light">{post.comment_count} Replies</span>
-          <span className="font-light ml-3">xx Likes</span>
+          <span className="font-light ml-3">|</span>
+          <Likes post={post}/>
         </div>
       </div>
     </div>
