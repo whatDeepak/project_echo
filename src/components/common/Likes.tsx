@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { CustomUser } from "@/app/api/auth/[...nextauth]/options";
 
-export default function Followers({ post} : {post : PostType} ) {
+export default function Likes({ post} : {post : PostType} ) {
   const [likeCount, setLikeCount] = useState(0);
 
   useEffect(() => {

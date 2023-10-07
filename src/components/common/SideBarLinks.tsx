@@ -5,7 +5,7 @@ import ThemeToggleBtn from "../common/ThemeToggleBtn";
 import { Button } from "../ui/button";
 import { signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import { Bell, Home, Search, User2 } from "lucide-react";
+import { Bell, Home, Search, User2, Users2 } from "lucide-react";
 import SignOutBtn from "./SignOutBtn";
 
 export default function SideBarLinks() {
@@ -43,6 +43,17 @@ export default function SideBarLinks() {
         >
           <Bell className="text-2xl" height={25} width={25} />
           <h3 className=" text-lg lg:text-xl  ml-2">Notifications</h3>
+        </Link>
+      </li>
+      <li>
+        <Link
+          href="/communities"
+          className={`flex justify-start items-center hover:font-bold mt-6 ${
+            pathname == "/communities" ? "font-bold" : ""
+          }`}
+        >
+          <Users2 className="text-2xl" height={25} width={25} />
+          <h3 className="text-lg lg:text-xl  ml-2">Communities</h3>
         </Link>
       </li>
       <li>

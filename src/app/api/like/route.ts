@@ -18,49 +18,86 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  // * Add Notification
+  const existingLike = await prisma.likes.findFirst({
+    where: {
+      user_id: Number(session.user?.id),
+      post_id: Number(payload.post_id),
+    },
+  });
+
   if (payload.status == "1") {
-    await prisma.notification.create({
-      data: {
-        user_id: Number(session.user?.id),
-        toUser_id: Number(payload.toUserId),
-        content: "Liked your post.",
-      },
-    });
-
-    // * In crease the post like counter
-    await prisma.post.update({
-      where: {
-        id: Number(payload.post_id),
-      },
-      data: {
-        like_count: {
-          increment: 1,
+    if (!existingLike) {
+      // Add Notification
+      await prisma.notification.create({
+        data: {
+          user_id: Number(session.user?.id),
+          toUser_id: Number(payload.toUserId),
+          content: "Liked your post.",
         },
-      },
-    });
+      });
 
-    // * Add Entry in like table
-    await prisma.likes.create({
-      data: {
-        user_id: Number(session?.user?.id),
-        post_id: Number(payload.post_id),
-      },
-    });
+      // Increase the post like counter
+      await prisma.post.update({
+        where: {
+          id: Number(payload.post_id),
+        },
+        data: {
+          like_count: {
+            increment: 1,
+          },
+        },
+      });
+
+      // Add Entry in like table
+      await prisma.likes.create({
+        data: {
+          user_id: Number(session?.user?.id),
+          post_id: Number(payload.post_id),
+        },
+      });
+    } else {
+      // User has already liked the post, so delete the like entry
+      await prisma.likes.delete({
+        where: {
+          id: existingLike.id,
+        },
+      });
+
+      // Decrease the post like counter
+      await prisma.post.update({
+        where: {
+          id: Number(payload.post_id),
+        },
+        data: {
+          like_count: {
+            decrement: 1,
+          },
+        },
+      });
+    }
   } else if (payload.status == "0") {
-    // * In crease the post like counter
-    await prisma.post.update({
-      where: {
-        id: Number(payload.post_id),
-      },
-      data: {
-        like_count: {
-          decrement: 1,
+    if (existingLike) {
+      // User has already liked the post, so delete the like entry
+      await prisma.likes.delete({
+        where: {
+          id: existingLike.id,
         },
-      },
-    });
+      });
 
-    // * delete in like table
+      // Decrease the post like counter
+      await prisma.post.update({
+        where: {
+          id: Number(payload.post_id),
+        },
+        data: {
+          like_count: {
+            decrement: 1,
+          },
+        },
+      });
+    }
+
+    // Delete in like table if the user disliked the post
     await prisma.likes.deleteMany({
       where: {
         post_id: Number(payload.post_id),
