@@ -32,6 +32,15 @@ type User = {
   image?: string;
 };
 
+type Community = {
+  id: number;
+  name: string;
+  username: string;
+  email?: string;
+  bio: string;
+  image?: string | null;
+};
+
 type PostType = {
   id: number;
   user_id: number;

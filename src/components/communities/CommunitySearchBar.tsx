@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import CreateCommunity from "../common/CreateCommunity";
 
 export default function CommunitySearchBar() {
   const [query, setQuery] = useState<string>("");
@@ -22,6 +23,7 @@ export default function CommunitySearchBar() {
           onChange={(e) => setQuery(e.target.value)}
         />
       </form>
+      <CreateCommunity/>
     </div>
   );
 }
