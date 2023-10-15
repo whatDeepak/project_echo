@@ -11,3 +11,11 @@ export const loginSchema = vine.object({
   email: vine.string().email(),
   password: vine.string(),
 });
+
+export const communityregisterSchema = vine.object({
+  username: vine.string().minLength(2).maxLength(60),
+  name: vine.string().minLength(5).maxLength(100),
+  bio: vine.string().minLength(5).maxLength(500),
+  email: vine.string().email(),
+  password: vine.string().minLength(6).maxLength(32).confirmed(),
+});

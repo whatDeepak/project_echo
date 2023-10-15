@@ -11,9 +11,26 @@ type AuthStateType = {
   password_confirmation?: string;
 };
 
+type CommunityAuthStateType = {
+  name?: string;
+  email?: string;
+  username?: string;
+  bio?: string;
+  password?: string;
+  password_confirmation?: string;
+};
+
 type AuthErrorType = {
   name?: string;
   email?: string;
+  username?: string;
+  password?: string;
+};
+
+type CommunityAuthErrorType = {
+  name?: string;
+  email?: string;
+  bio?: string;
   username?: string;
   password?: string;
 };

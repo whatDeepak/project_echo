@@ -30,18 +30,29 @@ import axios from "axios";
 export default function CreateCommunity() {
   const form = useForm(); // Initialize the form
 
+  const [authState, setAuthState] = useState<CommunityAuthStateType>({
+    name: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+    username: "",
+  });
+  const [errors, setErrors] = useState<CommunityAuthErrorType>({});
   const [loading, setLoading] = useState<boolean>(false);
 
-  const onSubmit = (e: { preventDefault: () => void; }) => {
+  const submit = (event: React.FormEvent) => {
+    event.preventDefault();
     setLoading(true);
 
     axios
-      .post("/api/communities/")
+      .post("/api/communities/register", authState)
       .then((res) => {
         setLoading(false);
         const response = res.data;
         if (response.status == 400) {
+          setErrors(response.errors);
         } else if (response.status == 200) {
+
         }
       })
       .catch((err) => {
@@ -50,16 +61,20 @@ export default function CreateCommunity() {
       });
   };
 
+  
   return (
+    <>
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button size="sm" className="mr-5 mt-5">
-          Create Community
-        </Button>
+        <div>
+          <Button size="sm" className="mr-5 mt-5">
+            Create Community
+          </Button>
+        </div>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={submit} className="space-y-8">
                 <FormField
                 control={form.control}
                 name="name"
@@ -67,12 +82,20 @@ export default function CreateCommunity() {
                     <FormItem>
                     <FormLabel>Community Name</FormLabel>
                     <FormControl>
-                        <Input placeholder="Type your community name" {...field} />
+                        <Input type="text" id="name" placeholder="Type your community name" {...field} 
+                        onChange={(event) =>
+                        setAuthState({ ...authState, name: event.target.value })} 
+                        />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage>
+                    <span className="text-red-400 font-bold">
+                      {errors.name}
+                    </span>
+                    </FormMessage>
                     </FormItem>
                 )}
                 />
+                
                 <FormField
                 control={form.control}
                 name="username"
@@ -80,9 +103,17 @@ export default function CreateCommunity() {
                     <FormItem>
                     <FormLabel>Username</FormLabel>
                     <FormControl>
-                        <Input placeholder="Type your community username" {...field} />
+                        <Input type="text" id="username" placeholder="Type your community username" {...field}
+                         onChange={(event) =>
+                          setAuthState({ ...authState, username: event.target.value })
+                        }
+                         />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage>
+                    <span className="text-red-400 font-bold">
+                      {errors.username}
+                    </span>
+                    </FormMessage>
                     </FormItem>
                 )}
                 />
@@ -93,17 +124,92 @@ export default function CreateCommunity() {
                     <FormItem>
                     <FormLabel>Bio</FormLabel>
                     <FormControl>
-                        <Input placeholder="Type your community bio" {...field} />
+                        <Input type="text" id="bio" placeholder="Type your community bio" {...field} 
+                        onChange={(event) =>
+                          setAuthState({ ...authState, bio: event.target.value })
+                        }
+                         />
+                    </FormControl>
+                    <FormMessage>
+                    <span className="text-red-400 font-bold">
+                      {errors.bio}
+                    </span>
+                    </FormMessage>
+                    </FormItem>
+                )}
+                />
+                <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                        <Input type="email" id="email" placeholder="Type your email" {...field} 
+                        onChange={(event) =>
+                          setAuthState({ ...authState, email: event.target.value })
+                        }
+                        />
+                    </FormControl>
+                    <FormMessage>
+                    <span className="text-red-400 font-bold">
+                      {errors.email}
+                    </span>
+                    </FormMessage>
+                    </FormItem>
+                )}
+                />
+                
+                <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                        <Input type="password" id="password" placeholder="Create Password" {...field} 
+                        onChange={(event) =>
+                          setAuthState({ ...authState, password: event.target.value })
+                        }
+                        />
+                    </FormControl>
+                    <FormMessage>
+                    <span className="text-red-400 font-bold">
+                      {errors.password}
+                    </span>
+                    </FormMessage>
+                    </FormItem>
+                )}
+                />
+              
+                <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Confirm Password</FormLabel>
+                    <FormControl>
+                        <Input type="password" id="cpassword" placeholder="Confirm password" {...field} 
+                        onChange={(event) =>
+                          setAuthState({
+                            ...authState,
+                            password_confirmation: event.target.value,
+                          })
+                        }
+                        />
                     </FormControl>
                     <FormMessage />
                     </FormItem>
                 )}
                 />
-                <Button type="submit" disabled={loading}>{loading ? "Processing..." : "Submit"}</Button>
+                <Button type="submit" disabled={loading}>
+                  {loading ? "Processing..." : "Submit"}
+                </Button>
                 <AlertDialogCancel className="ml-5">Cancel</AlertDialogCancel>
             </form>
         </Form>
       </AlertDialogContent>
     </AlertDialog>
+    </>
   );
 }

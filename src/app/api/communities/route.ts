@@ -25,6 +25,6 @@ export async function GET(request: NextRequest) {
       id: "desc",
     },
   });
-
+  
   return NextResponse.json({ status: 200, data: users });
 }
