@@ -8,8 +8,8 @@ import CommunitySearchBar from "@/components/communities/CommunitySearchBar";
 
 
 export const metadata: Metadata = {
-    title: "Explore",
-    description: "Search users here and show there profile...",
+    title: "Communities",
+    description: "Explore the communities...",
   };
   
   export default async function Communities({

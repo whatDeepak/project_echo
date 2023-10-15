@@ -4,6 +4,8 @@ import { CustomErrorReporter } from "@/validators/CustomErrorReporter";
 import { communityregisterSchema, registerSchema } from "@/validators/authSchema";
 import prisma from "@/DB/db.config";
 import bcrypt from "bcryptjs";
+import { CustomSession, authOptions } from "../../auth/[...nextauth]/options";
+import { getServerSession } from "next-auth";
 
 export async function POST(request: NextRequest) {
   try {
