@@ -8,7 +8,7 @@ export async function fetchPosts(page: number) {
     headers: headers(),
   });
   if (!res.ok) {
-    throw new Error("Failed to fecth posts");
+    throw new Error("Failed to fetch posts");
   }
   const response = await res.json();
 
@@ -23,12 +23,25 @@ export async function fetchUsers() {
     },
   });
   if (!res.ok) {
-    throw new Error("Failed to fecth posts");
+    throw new Error("Failed to fetch posts");
   }
   const response = await res.json();
   return response?.data;
 }
 
+export async function fetchCommunities() {
+  const res = await fetch(`${Env.APP_URL}/api/communities`, {
+    headers: headers(),
+    next: {
+      revalidate: 3600,
+    },
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+  const response = await res.json();
+  return response?.data;
+}
 // * Fetch user posts
 export async function fetchUserPosts() {
   const res = await fetch(`${Env.APP_URL}/api/user/post`, {
@@ -90,6 +103,18 @@ export async function fetchNotifications() {
 // * Show user with their posts and comments
 export async function fetchUser(id: number) {
   const res = await fetch(`${Env.APP_URL}/api/user/${id}`, {
+    cache: "no-cache",
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fecth posts");
+  }
+  const response = await res.json();
+  return response?.data;
+}
+
+// * Show user with their posts and comments
+export async function fetchCommunity(id: number) {
+  const res = await fetch(`${Env.APP_URL}/api/communities/${id}`, {
     cache: "no-cache",
   });
   if (!res.ok) {

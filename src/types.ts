@@ -57,7 +57,7 @@ type Community = {
   username: string;
   email?: string;
   bio: string;
-  image?: string | null;
+  image?: string;
 };
 
 type PostType = {
@@ -94,6 +94,17 @@ type ShowUserType = {
   name: string;
   id: string;
   email: string;
+  username: string;
+  image: string;
+  Post: Array<PostType> | [];
+  Comment: Array<CommentType> | [];
+};
+
+type ShowCommunityType = {
+  name: string;
+  id: string;
+  email: string;
+  bio: string;
   username: string;
   image: string;
   Post: Array<PostType> | [];
