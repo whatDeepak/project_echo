@@ -36,6 +36,7 @@ model Community {
   bio          String
   image        String?   @db.VarChar(100)
   Post         Post[]    @relation("post")
+  created_by   String    @db.VarChar(100)
   created_at   DateTime  @default(now())
   members      User[]    @relation("members")
   memberId     Int[]

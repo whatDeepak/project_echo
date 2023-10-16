@@ -20,11 +20,11 @@ import {
     FormLabel,
     FormMessage,
   } from "@/components/ui/form"
-import { signOut } from "next-auth/react";
+import { signOut, useSession, } from "next-auth/react";
 import { Button } from "../ui/button";
 import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
-import { RefObject, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "../ui/use-toast";
 
@@ -41,6 +41,15 @@ export default function CreateCommunity() {
   });
   const [errors, setErrors] = useState<CommunityAuthErrorType>({});
   const [loading, setLoading] = useState<boolean>(false);
+
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session && session.user) {
+      // @ts-ignore     ignores the username error as in defaultsession usrname is not existing in interface
+      setAuthState({ ...authState, created_by: session?.user.username });
+    }
+  }, [session]);
 
   const submit = (event: React.FormEvent) => {
     event.preventDefault();

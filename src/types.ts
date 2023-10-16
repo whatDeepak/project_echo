@@ -16,6 +16,7 @@ type CommunityAuthStateType = {
   email?: string;
   username?: string;
   bio?: string;
+  created_by?:string | null | undefined;
   password?: string;
   password_confirmation?: string;
 };
@@ -31,6 +32,7 @@ type CommunityAuthErrorType = {
   name?: string;
   email?: string;
   bio?: string;
+  created_by?:string;
   username?: string;
   password?: string;
 };

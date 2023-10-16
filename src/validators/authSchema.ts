@@ -17,5 +17,6 @@ export const communityregisterSchema = vine.object({
   name: vine.string().minLength(5).maxLength(100),
   bio: vine.string().minLength(5).maxLength(500),
   email: vine.string().email(),
+  created_by: vine.string(),
   password: vine.string().minLength(6).maxLength(32).confirmed(),
 });
