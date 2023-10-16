@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
     await prisma.community.create({ data: payload });
     return NextResponse.json({
       status: 200,
-      message: "Account created successfully.Please login into your account!",
+      message: "Community created successfully!!",
     });
   } catch (error) {
     console.log(error);

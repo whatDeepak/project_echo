@@ -24,11 +24,13 @@ import { signOut } from "next-auth/react";
 import { Button } from "../ui/button";
 import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
-import { useState } from "react";
+import { RefObject, useRef, useState } from "react";
 import axios from "axios";
+import { toast } from "../ui/use-toast";
 
 export default function CreateCommunity() {
   const form = useForm(); // Initialize the form
+  const alertDialogCancelRef: RefObject<HTMLButtonElement> = useRef(null);
 
   const [authState, setAuthState] = useState<CommunityAuthStateType>({
     name: "",
@@ -52,7 +54,12 @@ export default function CreateCommunity() {
         if (response.status == 400) {
           setErrors(response.errors);
         } else if (response.status == 200) {
-
+          alertDialogCancelRef.current?.click();
+          toast({
+            title: "Success",
+            description: response.message,
+            className: "bg-green-500",
+          });
         }
       })
       .catch((err) => {
@@ -205,7 +212,7 @@ export default function CreateCommunity() {
                 <Button type="submit" disabled={loading}>
                   {loading ? "Processing..." : "Submit"}
                 </Button>
-                <AlertDialogCancel className="ml-5">Cancel</AlertDialogCancel>
+                <AlertDialogCancel className="ml-5" ref={alertDialogCancelRef}>Cancel</AlertDialogCancel>
             </form>
         </Form>
       </AlertDialogContent>
