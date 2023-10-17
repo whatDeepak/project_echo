@@ -137,3 +137,16 @@ export async function searchUser(query: string) {
   const response = await res.json();
   return response?.data;
 }
+
+export async function searchCommunity(query: string) {
+  const res = await fetch(`${Env.APP_URL}/api/communities/discover?query=${query}`, {
+    cache: "no-cache",
+    headers: headers(),
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fecth posts");
+  }
+
+  const response = await res.json();
+  return response?.data;
+}
