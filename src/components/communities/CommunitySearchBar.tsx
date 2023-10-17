@@ -10,7 +10,7 @@ export default function CommunitySearchBar() {
 
   const submit = (event: React.FormEvent) => {
     event.preventDefault();
-    router.replace(`/communities?query=${query}`);
+    router.replace(`/communities/discover?query=${query}`);
   };
   return (
     <div className="mt-5">
@@ -23,7 +23,6 @@ export default function CommunitySearchBar() {
           onChange={(e) => setQuery(e.target.value)}
         />
       </form>
-      <CreateCommunity/>
     </div>
   );
 }

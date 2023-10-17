@@ -6,14 +6,14 @@ import UserListCard from "@/components/common/UserListCard";
 import { Metadata } from "next";
 import CommunitySearchBar from "@/components/communities/CommunitySearchBar";
 import CommunityMenu from "@/components/common/CommunityMenu";
-
+import CreateCommunity from "@/components/common/CreateCommunity";
 
 export const metadata: Metadata = {
     title: "Communities",
     description: "Explore the communities...",
   };
   
-  export default async function Communities({
+  export default async function Profile({
     searchParams,
   }: {
     searchParams: { [key: string]: string | undefined };
@@ -24,6 +24,8 @@ export const metadata: Metadata = {
         <DyanmicNavBar title="Communities" />
         <CommunityMenu />
 
+        <div className="flex justify-center items-center mt-5"><CreateCommunity/></div>
+        
       </div>
     );
   }

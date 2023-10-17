@@ -7,13 +7,12 @@ import { Metadata } from "next";
 import CommunitySearchBar from "@/components/communities/CommunitySearchBar";
 import CommunityMenu from "@/components/common/CommunityMenu";
 
-
 export const metadata: Metadata = {
     title: "Communities",
     description: "Explore the communities...",
   };
   
-  export default async function Communities({
+  export default async function Discover({
     searchParams,
   }: {
     searchParams: { [key: string]: string | undefined };
@@ -23,7 +22,18 @@ export const metadata: Metadata = {
       <div>
         <DyanmicNavBar title="Communities" />
         <CommunityMenu />
-
+        
+        <CommunitySearchBar />
+  
+        <div className="mt-5">
+          {users?.length > 0 &&
+            users.map((item) => <UserListCard user={item} key={item.id} />)}
+          {users?.length < 1 && searchParams?.query?.length! > 1 && (
+            <div className="text-center">
+              <h1 className="font-bold">No User found</h1>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
