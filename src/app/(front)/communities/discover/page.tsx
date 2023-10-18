@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     return (
       <div>
         <DyanmicNavBar title="Communities" />
-        <CommunityMenu />
+        <CommunityMenu title="Discover"/>
         
         <CommunitySearchBar />
   

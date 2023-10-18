@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     return (
       <div>
         <DyanmicNavBar title="Communities" />
-        <CommunityMenu />
+        <CommunityMenu title="Profile"/>
 
         <div className="flex justify-center items-center mt-5"><CreateCommunity/></div>
         <Separator className="mt-12"/>
