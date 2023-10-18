@@ -15,6 +15,7 @@ export async function GET(
       email: true,
       username: true,
       image: true,
+      bio:true,
 
       Post: {
         include: {

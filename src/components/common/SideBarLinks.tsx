@@ -27,7 +27,7 @@ export default function SideBarLinks() {
         <Link
           href="/explore"
           className={`flex justify-start items-center hover:font-bold mt-6 ${
-            pathname == "/explore" ? "font-bold" : ""
+            pathname.startsWith("/explore") ? "font-bold" : ""
           }`}
         >
           <Search className="text-2xl" height={25} width={25} />
@@ -49,7 +49,7 @@ export default function SideBarLinks() {
         <Link
           href="/communities"
           className={`flex justify-start items-center hover:font-bold mt-6 ${
-            pathname == "/communities" || pathname == "/communities/discover" || pathname == "/communities/profile" ? "font-bold" : ""
+            pathname.startsWith("/communities") ? "font-bold" : ""
           }`}
         >
           <Users2 className="text-2xl" height={25} width={25} />

@@ -20,6 +20,7 @@ export async function GET(request: NextRequest) {
       name: true,
       username: true,
       image: true,
+      bio:true,
     },
     orderBy: {
       id: "desc",
