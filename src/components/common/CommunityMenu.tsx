@@ -47,9 +47,7 @@ export default function CommunityMenu() {
                     </NavigationMenuItem>
                 </NavigationMenuList>
             </NavigationMenu>
-        </div>
-
-        
+        </div>   
     </div>
   );
 }

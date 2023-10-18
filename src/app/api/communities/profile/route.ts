@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { CustomSession, authOptions } from "../auth/[...nextauth]/options";
+
 import { getServerSession } from "next-auth";
 import prisma from "@/DB/db.config";
+import { CustomSession, authOptions } from "../../auth/[...nextauth]/options";
 
 export async function GET(request: NextRequest) {
   const session: CustomSession | null = await getServerSession(authOptions);
@@ -11,10 +12,8 @@ export async function GET(request: NextRequest) {
 
   const users = await prisma.community.findMany({
     where: {
-      NOT: {
         // @ts-ignore
         created_by: String(session.user?.username),
-      },
     },
     select: {
       id: true,

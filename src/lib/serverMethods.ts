@@ -42,6 +42,20 @@ export async function fetchCommunities() {
   const response = await res.json();
   return response?.data;
 }
+
+export async function fetchUserCommunities() {
+  const res = await fetch(`${Env.APP_URL}/api/communities/profile`, {
+    headers: headers(),
+    next: {
+      revalidate: 3600,
+    },
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+  const response = await res.json();
+  return response?.data;
+}
 // * Fetch user posts
 export async function fetchUserPosts() {
   const res = await fetch(`${Env.APP_URL}/api/user/post`, {

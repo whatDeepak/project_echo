@@ -7,6 +7,8 @@ import { Metadata } from "next";
 import CommunitySearchBar from "@/components/communities/CommunitySearchBar";
 import CommunityMenu from "@/components/common/CommunityMenu";
 import CreateCommunity from "@/components/common/CreateCommunity";
+import { Separator } from "@/components/ui/separator";
+import UserCommunity from "@/components/common/UserCommunity";
 
 export const metadata: Metadata = {
     title: "Communities",
@@ -25,6 +27,9 @@ export const metadata: Metadata = {
         <CommunityMenu />
 
         <div className="flex justify-center items-center mt-5"><CreateCommunity/></div>
+        <Separator className="mt-12"/>
+
+        <UserCommunity />
         
       </div>
     );

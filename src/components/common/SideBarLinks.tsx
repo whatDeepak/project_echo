@@ -49,7 +49,7 @@ export default function SideBarLinks() {
         <Link
           href="/communities"
           className={`flex justify-start items-center hover:font-bold mt-6 ${
-            pathname == "/communities" || "/communities/discover" || "/communities/profile" ? "font-bold" : ""
+            pathname == "/communities" || pathname == "/communities/discover" || pathname == "/communities/profile" ? "font-bold" : ""
           }`}
         >
           <Users2 className="text-2xl" height={25} width={25} />
