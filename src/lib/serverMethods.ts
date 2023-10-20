@@ -72,6 +72,22 @@ export async function fetchUserPosts() {
   return response!.data;
 }
 
+export async function fetchCommunityPosts(id: number) {
+  const res = await fetch(`${Env.APP_URL}/api/communities/post/${id}`, {
+    headers: headers(),
+    cache: "no-cache",
+    next: {
+      revalidate: 3600,
+    },
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+  const response = await res.json();
+  return response!.data;
+}
+
+
 // * Fetch user comments
 export async function fetchUserComments() {
   const res = await fetch(`${Env.APP_URL}/api/user/comment`, {

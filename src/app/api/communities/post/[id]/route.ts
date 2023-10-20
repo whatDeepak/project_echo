@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/DB/db.config";
-import { CustomSession, authOptions } from "../../auth/[...nextauth]/options";
-import { getServerSession } from "next-auth";
 
-export async function GET(request: NextRequest) {
+import { getServerSession } from "next-auth";
+import { CustomSession, authOptions } from "@/app/api/auth/[...nextauth]/options";
+
+export async function GET(request: NextRequest,
+  { params }: { params: { id: number } }) {
   const session: CustomSession | null = await getServerSession(authOptions);
   if (!session) {
     return NextResponse.json({ status: 401, message: "Un-Authorized" });
@@ -26,7 +28,7 @@ export async function GET(request: NextRequest) {
     },
     where: {
       user_id: Number(session?.user?.id),
-      community_id: 0,
+      community_id: Number(params.id),
     },
     orderBy: {
       id: "desc",

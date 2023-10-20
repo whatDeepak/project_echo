@@ -72,9 +72,11 @@ export async function DELETE(
   }
 
   // * remove the file
-  const dir = join(process.cwd(), "public", "/uploads");
-  const path = dir + "/" + post?.image;
-  rmSync(path, { force: true });
+  if(post?.image){
+    const dir = join(process.cwd(), "public", "/uploads");
+    const path = dir + "/" + post?.image;
+    rmSync(path, { force: true });
+  }
 
   await prisma.post.delete({
     where: {

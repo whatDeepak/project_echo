@@ -41,10 +41,15 @@ export default function AddThread() {
   };
 
   const submit = () => {
+    const url = window.location.href; // Get the current URL
+    const parts = url.split('/');     // Split the URL by '/'
+    const community_id = parts.pop();     // Get the last part of the URL (in this case, "13")
+
     setLoading(true);
     const formData = new FormData();
     formData.append("content", content);
     if (image) formData.append("image", image);
+    if(community_id) formData.append("community_id", community_id);
 
     axios
       .post("/api/post", formData)

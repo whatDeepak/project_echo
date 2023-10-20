@@ -63,6 +63,7 @@ type Community = {
 type PostType = {
   id: number;
   user_id: number;
+  community_id: number;
   content: string;
   image?: string;
   comment_count: number;

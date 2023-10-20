@@ -16,6 +16,9 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ status: 401, message: "Un-Authorized" });
   }
   const posts = await prisma.post.findMany({
+    where:{
+      community_id: 0,
+    },
     include: {
       user: {
         select: {
@@ -52,6 +55,7 @@ export async function POST(request: NextRequest) {
     const data = {
       content: formData.get("content"),
       image: "",
+      community_id: Number(formData.get("community_id")),
     };
     vine.errorReporter = () => new CustomErrorReporter();
     const validator = vine.compile(postSchema);
@@ -83,14 +87,19 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({
           status: 500,
           message: "Something went wrong.Please try again later.",
-        });
+        }); 
       }
     }
 
+    const initialCommunityId = 0; // Or any other default value
+    
+    const community_id: number | null = Number(formData.get("community_id")) || initialCommunityId;
+  
     // * create post in DB
     await prisma.post.create({
       data: {
         content: payload.content,
+        community_id: community_id,
         user_id: Number(session.user?.id),
         image: data.image ?? null,
       },
