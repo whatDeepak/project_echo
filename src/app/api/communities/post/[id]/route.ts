@@ -27,7 +27,6 @@ export async function GET(request: NextRequest,
       },
     },
     where: {
-      user_id: Number(session?.user?.id),
       community_id: Number(params.id),
     },
     orderBy: {

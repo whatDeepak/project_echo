@@ -1,6 +1,6 @@
 import DyanmicNavBar from "@/components/common/DyanmicNavBar";
 import UserProfileAvatar from "@/components/common/UserProfileAvatar";
-import { fetchCommunities, fetchCommunity, fetchUser } from "@/lib/serverMethods";
+import { fetchCommunities, fetchCommunity, fetchCommunityPosts, fetchUser } from "@/lib/serverMethods";
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PostCard from "@/components/common/PostCard";
@@ -10,6 +10,8 @@ import CommunityProfile from "@/components/common/CommunityProfile";
 
 export default async function ShowCommunity({ params }: { params: { id: number } }) {
   const user: ShowCommunityType | undefined = await fetchCommunity(params.id);
+  const posts: Array<PostType> | [] = await fetchCommunityPosts(params.id);
+
   return (
     <div>
       <DyanmicNavBar title="Show Community" />
@@ -31,11 +33,10 @@ export default async function ShowCommunity({ params }: { params: { id: number }
             </TabsList>
             <TabsContent value="post">
               <div className="mt-5">
-                {user?.Post &&
-                  user.Post.map((item) => <PostCard post={item} />)}
-
-                {user?.Post && user.Post.length < 1 && (
-                  <h1 className="text-center mt-5">No Post Found</h1>
+                {posts &&
+                  posts.map((item) => <PostCard post={item} isAuthPost={true} />)}
+                {posts && posts.length < 1 && (
+                  <h1 className="text-center mt-5">No Post found</h1>
                 )}
               </div>
             </TabsContent>
