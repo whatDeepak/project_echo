@@ -34,7 +34,7 @@ export default async function ShowCommunity({ params }: { params: { id: number }
             <TabsContent value="post">
               <div className="mt-5">
                 {posts &&
-                  posts.map((item) => <PostCard post={item} isAuthPost={true} />)}
+                  posts.map((item) => <PostCard post={item} />)}
                 {posts && posts.length < 1 && (
                   <h1 className="text-center mt-5">No Post found</h1>
                 )}
