@@ -48,14 +48,14 @@ export default function Register() {
       <div className=" h-screen w-screen flex justify-center items-center">
         <div className="w-full lg:w-1/3 bg-muted p-6 rounded-lg">
           <div className="flex justify-center">
-            <Image src="/images/logo.svg" width={50} height={50} alt="Logo" />
+            <Image src="/images/echologo.svg" width={50} height={50} alt="Logo" />
           </div>
           <form onSubmit={submit}>
             <div className="mt-5">
               <div className="flex justify-between items-center">
                 <div>
                   <h1 className="text-2xl font-bold">Register</h1>
-                  <p>Welcome to the threads</p>
+                  <p>Welcome to Echo!</p>
                 </div>
               </div>
 

@@ -4,7 +4,7 @@ import CustomProvider from "../providers";
 
 export const metadata: Metadata = {
   title: "Auth Page",
-  description: "The Threads app Auth pages.",
+  description: "The Echo app Auth pages.",
 };
 
 export default function LoginLayout({

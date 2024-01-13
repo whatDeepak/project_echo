@@ -59,7 +59,7 @@ export default function Login() {
       <div className=" h-screen w-screen flex justify-center items-center">
         <div className="w-full mx-2 md:w-1/3 md:mx-0 bg-muted p-6 rounded-lg">
           <div className="flex justify-center">
-            <Image src="/images/logo.svg" width={50} height={50} alt="Logo" />
+            <Image src="/images/echologo.svg" width={50} height={50} alt="Logo" />
           </div>
           {params.get("message") ? (
             <div className="bg-green-300 p-5 rounded-lg font-bold my-4 text-black">
