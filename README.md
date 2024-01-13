@@ -6,7 +6,7 @@
 
 Welcome to our community-focused social media app project! This platform is designed to bring college communities together by providing a space for users to share thoughts, ideas, and engage in collaborative discussions. The app is built using Next.js, TypeScript, and Tailwind CSS to ensure a modern and responsive user experience.
 
-![Light Theme](public/images/Home_Light.png)
+<img src="public/images/Home_Light.png" alt="Light Theme" width="600">
 
 ## Features
 
@@ -44,13 +44,13 @@ Welcome to our community-focused social media app project! This platform is desi
 
 ## Screenshots
 
-![Login Page](public/images/Login.png)
-![Register Page](public/images/Register.png)
-![Home Page](public/images/Home.png)
-![Explore Page](public/images/Explore.png)
-![Notifications Page](public/images/Notifications.png)
-![Communities Page](public/images/Communities.png)
-![Profile Page](public/images/Profile.png)
+<img src="public/images/Login.png" alt="Login Page" width="600">
+<img src="public/images/Register.png" alt="Register page" width="600">
+<img src="public/images/Home.png" alt="Home page" width="600">
+<img src="public/images/Explore.png" alt="Explore page" width="600">
+<img src="public/images/Notifications.png" alt="Notifications page" width="600">
+<img src="public/images/Communities.png" alt="Communities page" width="600">
+<img src="public/images/Profile.png" alt="CProfile page" width="600">
 
 ## Contributing
 
