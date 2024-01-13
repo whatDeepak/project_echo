@@ -1,4 +1,4 @@
-#ECHO
+# ECHO
 
 **Note: This project is currently in development and has not been deployed.**
 
@@ -6,7 +6,7 @@
 
 Welcome to our community-focused social media app project! This platform is designed to bring college communities together by providing a space for users to share thoughts, ideas, and engage in collaborative discussions. The app is built using Next.js, TypeScript, and Tailwind CSS to ensure a modern and responsive user experience.
 
-![App Screenshot](screenshots/app_screenshot.png)
+![Light Theme](public/images/Home_Light.png)
 
 ## Features
 
@@ -44,9 +44,13 @@ Welcome to our community-focused social media app project! This platform is desi
 
 ## Screenshots
 
-![Home Page](screenshots/home_page.png)
-![Explore Page](screenshots/explore_page.png)
-![Notifications Page](screenshots/notifications_page.png)
+![Login Page](public/images/Login.png)
+![Register Page](public/images/Register.png)
+![Home Page](public/images/Home.png)
+![Explore Page](public/images/Explore.png)
+![Notifications Page](public/images/Notifications.png)
+![Communities Page](public/images/Communities.png)
+![Profile Page](public/images/Profile.png)
 
 ## Contributing
 
